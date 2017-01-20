@@ -98,6 +98,10 @@ var app = new Vue({
               app.travelTime = r.rows[0].elements[0].duration.text
             })
 
+            if (app.line) {
+              app.line.setMap(null)
+            }
+
             app.directionsDisplay.setMap(app.map)
             app.directionsDisplay.setDirections(response);
           } else {
