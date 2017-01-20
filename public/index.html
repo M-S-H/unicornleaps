@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Unicorn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgJQh_3zDHJqn3pY2l5PfKPSt7vNzbCHM">
+    </script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="unicornmap">
+      <div id="map"></div>
+      <div id="panel">
+        <div id="type">
+          <span :class="transitType == 'WALKING' ? 'active' : ''" @click="transitType = 'WALKING'"><i class="material-icons">directions_walk</i></span>
+          <span :class="transitType == 'DRIVING' ? 'active' : ''" @click="transitType = 'DRIVING'"><i class="material-icons">directions_car</i></span>
+          <span :class="transitType == 'TRANSIT' ? 'active' : ''" @click="transitType = 'TRANSIT'"><i class="material-icons">directions_bus</i></span>
+          <span :class="transitType == 'UNICORN' ? 'active' : ''" @click="transitType = 'UNICORN'"><img src="./unicorn.png" width="24px"></span>
+        </div>
+        <div id="source"><b>A:</b> {{origin ? origin : 'Not Selected'}}</div>
+        <div id="destination"><b>B:</b> {{destination ? destination : 'Not Selected'}}</div>
+        <div id="info">
+          <div v-if="travelDistance == ''" id="instructions">
+            {{instructions}}
+          </div>
+          <div v-else id="results">
+            <div id="duration"><b>{{travelTime}}<b></div>
+            <div id="distance">{{travelDistance}}</div>
+            <div @click="reset" id="new"><b id="reset">Clear</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
